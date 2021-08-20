@@ -454,6 +454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tempCard: {fileID: 11400000, guid: d611f446dca0dcb44ac2fe74ab5bd125, type: 2}
+  tempCard2: {fileID: 11400000, guid: 029186ce0f14a164f85256919b42110b, type: 2}
   cardObject: {fileID: 3051360181597446869, guid: ab558188e414238448e910d0ad6bf4e6, type: 3}
   handObject: {fileID: 2001305825}
 --- !u!1 &923560666
