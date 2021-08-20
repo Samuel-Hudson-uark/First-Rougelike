@@ -20,6 +20,11 @@ public class CardDisplay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ChangeCard(card);
+    }
+
+    public void ChangeCard(MonsterCard card)
+    {
         nameText.text = card.name;
         descriptionText.text = card.text;
 
