@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Skeleton
   text: No effect.
-  artwork: {fileID: 21300000, guid: 724f185d023b79b4c876234f437707dd, type: 3}
+  artwork: {fileID: 4413107966598997950, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
   cost: 1
   move: 2
   attack: 2
   health: 1
+  unit: {fileID: 8369066323461281969, guid: a33bfc4e31d23be419ea88b249a9018d, type: 3}

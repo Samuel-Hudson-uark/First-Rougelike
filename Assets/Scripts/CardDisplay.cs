@@ -20,11 +20,20 @@ public class CardDisplay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ChangeCard(card);
+        nameText.text = card.name;
+        descriptionText.text = card.text;
+
+        artworkImage.sprite = card.artwork;
+
+        costText.text = card.cost.ToString();
+        moveText.text = card.move.ToString();
+        attackText.text = card.attack.ToString();
+        healthText.text = card.health.ToString();
     }
 
     public void ChangeCard(MonsterCard card)
     {
+        this.card = card;
         nameText.text = card.name;
         descriptionText.text = card.text;
 

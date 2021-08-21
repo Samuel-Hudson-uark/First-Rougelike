@@ -15,6 +15,8 @@ public class MonsterCard : ScriptableObject
     public int attack;
     public int health;
 
+    public GameObject unit;
+
     public void Print()
     {
         Debug.Log(name);
