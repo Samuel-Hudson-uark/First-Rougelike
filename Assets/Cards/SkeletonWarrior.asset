@@ -20,3 +20,4 @@ MonoBehaviour:
   attack: 3
   health: 3
   unit: {fileID: 7916947861052672347, guid: d8581e5d99f64b64caba8e1c15420b7e, type: 3}
+  placer: {fileID: 6763405065573446014, guid: fabb95f99bb4b734e8407ef27937228c, type: 3}
