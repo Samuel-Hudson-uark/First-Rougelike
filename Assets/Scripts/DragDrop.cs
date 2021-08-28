@@ -7,39 +7,24 @@ using UnityEngine.UI;
 public class DragDrop : MonoBehaviour
 {
     private bool isDragging = false;
-    private bool canPlace = false;
     private bool isViewing = false;
-    private Vector3 startPosition;
-    private GameObject placingObject;
     public GameObject cardImage;
+    private Placer placer;
 
-    // Update is called once per frame
-    void Update()
+    void Start()
     {
-        if(isDragging)
-        {
-            placingObject.transform.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y+50);
-        }
+        placer = GameObject.Find("Placer").GetComponent<Placer>();
     }
 
-    public void StartDrag()
+    public void Click()
     {
-        placingObject = Instantiate(gameObject.GetComponent<CardDisplay>().card.placer, new Vector3(0,0,0), Quaternion.identity);
-        placingObject.transform.SetParent(transform, false);
-        isDragging = true;
+        placer.AssignUnit(gameObject);
         PointerExit();
     }
 
     public void EndDrag()
     {
-        isDragging = false;
-        if(canPlace)
-        {
-
-        } else
-        {
-            Destroy(placingObject);
-        }
+        placer.OnClick();
     }
 
     public void PointerEnter()

@@ -15,4 +15,9 @@ public class Tile : MonoBehaviour
     {
         
     }
+
+    public bool CanPlace(GameObject unit)
+    {
+        return true;
+    }
 }
