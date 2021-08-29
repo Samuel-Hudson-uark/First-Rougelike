@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 7916947861052672348}
   - component: {fileID: 7916947861052672349}
   - component: {fileID: 7916947861052672346}
+  - component: {fileID: 8985389218985687255}
+  - component: {fileID: -4989834008132170516}
   m_Layer: 3
   m_Name: SkeletonWarriorUnit
-  m_TagString: Untagged
+  m_TagString: Ally
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,3 +104,30 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8985389218985687255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7916947861052672347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf81b5572c8e2084dbee44eb11c33755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  move: 5
+  isActive: 0
+--- !u!114 &-4989834008132170516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7916947861052672347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfac78365549e4246b86411076e2ad2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  card: {fileID: 11400000, guid: 029186ce0f14a164f85256919b42110b, type: 2}

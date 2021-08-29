@@ -16,7 +16,7 @@ MonoBehaviour:
   text: No effect.
   artwork: {fileID: 4413107966598997950, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
   cost: 1
-  move: 2
+  move: 3
   attack: 2
   health: 1
   unit: {fileID: 8369066323461281969, guid: a33bfc4e31d23be419ea88b249a9018d, type: 3}

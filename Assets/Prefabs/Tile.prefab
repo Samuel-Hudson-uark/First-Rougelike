@@ -96,6 +96,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7686f865c2348dd4eaefa9403dc3c91c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  current: 0
+  target: 0
+  selectable: 0
+  adjacencyList: []
+  visited: 0
+  parent: {fileID: 0}
+  distance: 0
 --- !u!61 &525087434103778492
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -14,10 +14,10 @@ public class Placer : MonoBehaviour
         if (isPlacing)
         {
             UpdatePosition();
-            if(Input.GetMouseButtonDown(0))
-            {
-                OnClick();
-            }
+        }
+        if(Input.GetMouseButtonDown(0))
+        {
+            OnClick();
         }
     }
 
@@ -39,29 +39,38 @@ public class Placer : MonoBehaviour
 
     public void OnClick()
     {
-        if (isPlacing)
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
+        if (hit.collider != null && hit.collider.gameObject.tag == "Tile")
         {
-            isPlacing = false;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
-            if (hit.collider != null && hit.collider.gameObject.tag == "Tile")
+            GameObject tileObject = hit.collider.gameObject;
+            if(isPlacing)
             {
-                GameObject tileObject = hit.collider.gameObject;
-                Tile tile = tileObject.GetComponent<Tile>();
-                if (tile.CanPlace(placingUnit))
-                {
-                    placingUnit.transform.SetParent(tileObject.transform);
-                    placingUnit.transform.localPosition = new Vector3(0, 0, 0);
-                    placingUnit = null;
-                    if(placingCard != null)
-                    {
-                        Destroy(placingCard);
-                    }
-                }
+                Place(tileObject);
+                isPlacing = false;
+            } else
+            {
+                tileObject.GetComponent<Tile>().OnClick();
             }
-            else
+        }
+        else if(isPlacing)
+        {
+            Destroy(placingUnit);
+            isPlacing = false;
+        }
+    }
+
+    public void Place(GameObject tileObject)
+    {
+        Tile tile = tileObject.GetComponent<Tile>();
+        if (tile.CanPass(placingUnit))
+        {
+            placingUnit.transform.SetParent(tileObject.transform);
+            placingUnit.transform.localPosition = new Vector3(0, 0, 0);
+            placingUnit = null;
+            if (placingCard != null)
             {
-                Destroy(placingUnit);
+                Destroy(placingCard);
             }
         }
     }

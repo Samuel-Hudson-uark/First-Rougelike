@@ -16,7 +16,7 @@ MonoBehaviour:
   text: More powerful
   artwork: {fileID: -5987757079455804182, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
   cost: 3
-  move: 3
+  move: 5
   attack: 3
   health: 3
   unit: {fileID: 7916947861052672347, guid: d8581e5d99f64b64caba8e1c15420b7e, type: 3}
