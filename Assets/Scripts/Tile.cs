@@ -5,8 +5,8 @@ using UnityEngine;
 public class Tile : MonoBehaviour
 {
     public bool current = false;
-    public bool target = false;
     public bool selectable = false;
+    public bool attackable = false;
 
     public List<Tile> adjacencyList = new List<Tile>();
 
@@ -21,13 +21,13 @@ public class Tile : MonoBehaviour
         {
             GetComponent<Renderer>().material.color = Color.magenta;
         }
-        else if (target)
+        else if (attackable)
         {
-            GetComponent<Renderer>().material.color = Color.green;
+            GetComponent<Renderer>().material.color = Color.red;
         }
         else if (selectable)
         {
-            GetComponent<Renderer>().material.color = Color.red;
+            GetComponent<Renderer>().material.color = Color.green;
         }
         else
         {
@@ -45,7 +45,7 @@ public class Tile : MonoBehaviour
         adjacencyList.Clear();
 
         current = false;
-        target = false;
+        attackable = false;
         selectable = false;
 
         visited = false;
@@ -80,14 +80,12 @@ public class Tile : MonoBehaviour
 
     public void OnClick()
     {
-        Debug.Log("Click");
-
-        foreach (GameObject tile in GameObject.FindGameObjectsWithTag("Tile"))
+        if (transform.childCount > 0)
         {
-            tile.GetComponent<Tile>().Reset();
-        }
-            if (transform.childCount > 0)
-        {
+            foreach (GameObject tile in GameObject.FindGameObjectsWithTag("Tile"))
+            {
+                tile.GetComponent<Tile>().Reset();
+            }
             AllyMove move = transform.GetChild(0).gameObject.GetComponent<AllyMove>();
             if (move != null)
             {

@@ -12,12 +12,16 @@ public class Movement : MonoBehaviour
 
     Vector3 velocity = new Vector3();
     Vector3 heading = new Vector3();
+    
+    public bool moving = false;
+    public float moveSpeed = 2;
 
-    protected int move = 5;
+    public UnitLogic logic;
 
     protected void Init()
     {
         tiles = GameObject.FindGameObjectsWithTag("Tile");
+        logic = gameObject.GetComponent<UnitLogic>();
     }
 
     public void GetCurrentTile()
@@ -47,6 +51,9 @@ public class Movement : MonoBehaviour
         ComputeAdjacencyLists();
         GetCurrentTile();
 
+        if (!logic.CanMove())
+            return;
+
         Queue<Tile> process = new Queue<Tile>();
         process.Enqueue(currentTile);
         currentTile.visited = true;
@@ -56,9 +63,10 @@ public class Movement : MonoBehaviour
             Tile t = process.Dequeue();
 
             selectableTiles.Add(t);
-            t.selectable = true;
+            if(t != currentTile)
+                t.selectable = true;
 
-            if(t.distance < move)
+            if(t.distance < logic.currentMove)
             {
                 foreach (Tile tile in t.adjacencyList)
                 {
@@ -72,5 +80,74 @@ public class Movement : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void MoveToTile(Tile tile)
+    {
+        path.Clear();
+        moving = true;
+
+        transform.SetParent(tile.gameObject.transform);
+
+        Tile next = tile;
+        while(next != null)
+        {
+            path.Push(next);
+            next = next.parent;
+        }
+
+        logic.currentMove -= path.Count;
+        RemoveSelectableTiles();
+    }
+
+    public void Move()
+    {
+        if(path.Count > 0)
+        {
+            Tile t = path.Peek();
+            Vector3 target = t.transform.position;
+            if(Vector3.Distance(transform.position, target) >= 0.05f)
+            {
+                CalculateHeading(target);
+                SetVelocity();
+
+                transform.position += velocity * Time.deltaTime;
+            }
+            else
+            {
+                transform.position = target;
+                path.Pop();
+            }
+        }
+        else
+        {
+            moving = false;
+        }
+    }
+    
+    protected void RemoveSelectableTiles()
+    {
+        if(currentTile != null)
+        {
+            currentTile.current = false;
+            currentTile = null;
+        }
+
+        foreach (Tile tile in selectableTiles)
+        {
+            tile.Reset();
+        }
+        selectableTiles.Clear();
+    }
+
+    void CalculateHeading(Vector3 target)
+    {
+        heading = target - transform.position;
+        heading.Normalize();
+    }
+
+    void SetVelocity()
+    {
+        velocity = heading * moveSpeed;
     }
 }

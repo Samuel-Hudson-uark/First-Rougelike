@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class CardDisplay : MonoBehaviour
 {
     public MonsterCard card;
+    public MonsterCard originalCard;
 
     public Text nameText;
     public Text descriptionText;
@@ -19,6 +20,12 @@ public class CardDisplay : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
+    {
+        card = Instantiate(originalCard);
+        OnAttributesChanged();
+    }
+
+    void OnAttributesChanged()
     {
         nameText.text = card.name;
         descriptionText.text = card.text;
@@ -34,14 +41,6 @@ public class CardDisplay : MonoBehaviour
     public void ChangeCard(MonsterCard card)
     {
         this.card = card;
-        nameText.text = card.name;
-        descriptionText.text = card.text;
-
-        artworkImage.sprite = card.artwork;
-
-        costText.text = card.cost.ToString();
-        moveText.text = card.move.ToString();
-        attackText.text = card.attack.ToString();
-        healthText.text = card.health.ToString();
+        OnAttributesChanged();
     }
 }

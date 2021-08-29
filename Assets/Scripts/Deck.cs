@@ -29,7 +29,7 @@ public class Deck : MonoBehaviour
         if(cards.Count > 0)
         {
             GameObject playerCard = Instantiate(cardObject, new Vector3(0,0,0), Quaternion.identity);
-            playerCard.GetComponent<CardDisplay>().card = cards.Pop();
+            playerCard.GetComponent<CardDisplay>().originalCard = cards.Pop();
             playerCard.transform.SetParent(handObject.transform, false);
         }
     }
