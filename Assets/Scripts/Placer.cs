@@ -67,6 +67,7 @@ public class Placer : MonoBehaviour
         {
             placingUnit.transform.SetParent(tileObject.transform);
             placingUnit.transform.localPosition = new Vector3(0, 0, 0);
+            placingUnit.GetComponent<Movement>().Init();
             placingUnit = null;
             if (placingCard != null)
             {

@@ -6,14 +6,12 @@ public class AllyMove : Movement
 {
     public bool isActive = false;
 
-    void Start()
-    {
-        Init();    
-    }
-
     // Update is called once per frame
     void Update()
     {
+        if (!turn)
+            return;
+
         if(isActive)
         {
             if(!moving)

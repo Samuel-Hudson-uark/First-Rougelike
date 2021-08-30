@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    public bool turn = false;
+
     List<Tile> selectableTiles = new List<Tile>();
     GameObject[] tiles;
 
@@ -14,14 +16,16 @@ public class Movement : MonoBehaviour
     Vector3 heading = new Vector3();
     
     public bool moving = false;
-    public float moveSpeed = 2;
+    public float moveSpeed = 4;
 
     public UnitLogic logic;
 
-    protected void Init()
+    public void Init()
     {
         tiles = GameObject.FindGameObjectsWithTag("Tile");
         logic = gameObject.GetComponent<UnitLogic>();
+
+        TurnManager.AddUnit(this);
     }
 
     public void GetCurrentTile()
@@ -149,5 +153,17 @@ public class Movement : MonoBehaviour
     void SetVelocity()
     {
         velocity = heading * moveSpeed;
+    }
+
+    public void BeginTurn()
+    {
+        logic.RefreshAttack();
+        logic.RefreshMove();
+        turn = true;
+    }
+
+    public void EndTurn()
+    {
+        turn = false;
     }
 }
