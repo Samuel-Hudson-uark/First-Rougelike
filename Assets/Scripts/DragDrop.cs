@@ -31,7 +31,7 @@ public class DragDrop : MonoBehaviour
     {
         if (isDragging || isViewing) return;
         isViewing = true;
-        cardImage.transform.LeanMoveLocalY(60, 0.25f);
+        cardImage.transform.LeanMoveLocalY(15, 0.25f);
         cardImage.transform.localScale = new Vector3(2, 2, 1);
         cardImage.layer = 7;
         foreach(Transform child in cardImage.transform)

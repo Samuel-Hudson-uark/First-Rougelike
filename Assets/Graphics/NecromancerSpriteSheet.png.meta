@@ -1052,7 +1052,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -1074,7 +1074,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -1083,6 +1083,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -7323,10 +7335,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      NecromancerSpriteSheet_89: -1717468523920352302
       NecromancerSpriteSheet_93: -7638599071319784515
       NecromancerSpriteSheet_247: -8325859948685219388
-      NecromancerSpriteSheet_276: 64973964454540293
+      NecromancerSpriteSheet_119: -3054068070409773202
       NecromancerSpriteSheet_333: 1761504434142084753
       NecromancerSpriteSheet_55: -2373322761903342432
       NecromancerSpriteSheet_167: -5005311218832929825
@@ -7341,6 +7352,7 @@ TextureImporter:
       NecromancerSpriteSheet_107: -9217239783905823531
       NecromancerSpriteSheet_94: 6610665687205149029
       NecromancerSpriteSheet_139: -3883441412595803457
+      NecromancerSpriteSheet_40: 5557797223299235261
       NecromancerSpriteSheet_133: -2122297330203040641
       NecromancerSpriteSheet_164: 839330633872835370
       NecromancerSpriteSheet_59: -2865467658576137875
@@ -7382,11 +7394,11 @@ TextureImporter:
       NecromancerSpriteSheet_319: 8441972224769705390
       NecromancerSpriteSheet_48: 8445041262954386179
       NecromancerSpriteSheet_301: 4400624265383804148
-      NecromancerSpriteSheet_214: 7756281930463931366
-      NecromancerSpriteSheet_58: -252940486543246312
-      NecromancerSpriteSheet_203: 6374126035660774171
       NecromancerSpriteSheet_260: -2280015938716517342
+      NecromancerSpriteSheet_214: 7756281930463931366
+      NecromancerSpriteSheet_203: 6374126035660774171
       NecromancerSpriteSheet_282: 2237000740175647541
+      NecromancerSpriteSheet_58: -252940486543246312
       NecromancerSpriteSheet_75: -3407728916336900083
       NecromancerSpriteSheet_153: 6124253339923672174
       NecromancerSpriteSheet_227: -7869637661516162883
@@ -7458,10 +7470,10 @@ TextureImporter:
       NecromancerSpriteSheet_266: -1317267621730479217
       NecromancerSpriteSheet_39: 3410158326655671099
       NecromancerSpriteSheet_118: -5836615970770124507
-      NecromancerSpriteSheet_157: 7582151665042254650
+      NecromancerSpriteSheet_256: 2434456936767895826
       NecromancerSpriteSheet_246: 8396250822507920510
       NecromancerSpriteSheet_308: -3315760427802942251
-      NecromancerSpriteSheet_256: 2434456936767895826
+      NecromancerSpriteSheet_157: 7582151665042254650
       NecromancerSpriteSheet_115: 8932622590088416816
       NecromancerSpriteSheet_71: 4827234543930863687
       NecromancerSpriteSheet_73: -6134882176138058354
@@ -7475,28 +7487,28 @@ TextureImporter:
       NecromancerSpriteSheet_318: -1728164523216438772
       NecromancerSpriteSheet_27: 5070479373852747331
       NecromancerSpriteSheet_86: -6258013405063369560
-      NecromancerSpriteSheet_146: -6536775808099461014
       NecromancerSpriteSheet_148: 3625632777202095029
-      NecromancerSpriteSheet_159: 2428795888872403789
       NecromancerSpriteSheet_217: 7494775429752042751
-      NecromancerSpriteSheet_221: 6063409139986591700
+      NecromancerSpriteSheet_159: 2428795888872403789
+      NecromancerSpriteSheet_146: -6536775808099461014
       NecromancerSpriteSheet_156: 3042414694285269381
       NecromancerSpriteSheet_62: 252375070583247288
-      NecromancerSpriteSheet_78: -6570699023107683133
       NecromancerSpriteSheet_92: 5385406480516704977
-      NecromancerSpriteSheet_127: -2504167498043781987
-      NecromancerSpriteSheet_312: 8803897722730547282
       NecromancerSpriteSheet_218: -8145989662464800685
-      NecromancerSpriteSheet_265: -3760347280272553281
+      NecromancerSpriteSheet_78: -6570699023107683133
+      NecromancerSpriteSheet_312: 8803897722730547282
+      NecromancerSpriteSheet_127: -2504167498043781987
       NecromancerSpriteSheet_313: -5960733975616972874
       NecromancerSpriteSheet_253: 4416500691797145211
       NecromancerSpriteSheet_264: 7521515611666905508
       NecromancerSpriteSheet_88: -4898195015984378741
       NecromancerSpriteSheet_197: -4895450207299585809
+      NecromancerSpriteSheet_221: 6063409139986591700
       NecromancerSpriteSheet_169: -6578724373487171692
       NecromancerSpriteSheet_267: -4663783459215938234
       NecromancerSpriteSheet_72: 4647045639450384071
       NecromancerSpriteSheet_80: 9018433264766109276
+      NecromancerSpriteSheet_265: -3760347280272553281
       NecromancerSpriteSheet_152: 2306591810618237026
       NecromancerSpriteSheet_47: -4452422221780247017
       NecromancerSpriteSheet_110: -6558750319884380559
@@ -7617,8 +7629,8 @@ TextureImporter:
       NecromancerSpriteSheet_242: 1864440254727161960
       NecromancerSpriteSheet_321: -3420936066614848104
       NecromancerSpriteSheet_311: -8486521363646855072
-      NecromancerSpriteSheet_119: -3054068070409773202
-      NecromancerSpriteSheet_40: 5557797223299235261
+      NecromancerSpriteSheet_276: 64973964454540293
+      NecromancerSpriteSheet_89: -1717468523920352302
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
