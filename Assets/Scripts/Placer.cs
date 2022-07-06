@@ -8,14 +8,7 @@ public class Placer : MonoBehaviour
     private bool isPlacing = false;
     private GameObject placingUnit;
     private GameObject placingCard;
-    private GameObject hoveringTile;
-    [SerializeField] private GameObject isoGridSpawner;
-    private static Vector2 gridPos;
-
-    private void Start()
-    {
-        gridPos = new Vector2(isoGridSpawner.transform.position.x, isoGridSpawner.transform.position.y+0.5f);
-    }
+    [SerializeField] private GridLayout gridLayout;
 
     // Update is called once per frame
     void Update()
@@ -28,7 +21,6 @@ public class Placer : MonoBehaviour
         {
             OnClick();
         }
-        FindHoveringTile();
     }
 
     private void UpdatePosition()
@@ -49,7 +41,11 @@ public class Placer : MonoBehaviour
 
     public void OnClick()
     {
-        if(hoveringTile != null && isPlacing)
+        Vector2 posOnScreen = Input.mousePosition;
+        Vector2 worldPoint = Camera.main.ScreenToWorldPoint(posOnScreen);
+        Vector3Int tile = gridLayout.WorldToCell(worldPoint) + new Vector3Int(-1,-1,0);
+        Debug.Log(tile);
+        /*if(hoveringTile != null && isPlacing)
         {
             if(Place(hoveringTile))
             {
@@ -63,12 +59,12 @@ public class Placer : MonoBehaviour
         {
             Destroy(placingUnit);
             isPlacing = false;
-        }
+        }*/
     }
 
     public bool Place(GameObject tileObject)
     {
-        Tile tile = hoveringTile.GetComponent<Tile>();
+        /*Tile tile = hoveringTile.GetComponent<Tile>();
         bool flag = tile.CanPass(placingUnit);
         if (flag)
         {
@@ -81,43 +77,7 @@ public class Placer : MonoBehaviour
                 Destroy(placingCard);
             }
         }
-        return flag;
-    }
-
-    private void FindHoveringTile()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
-        if (hit.collider != null && hit.collider.gameObject.tag == "Tile")
-        {
-            Vector2 hitPoint = hit.point;
-            Vector2Int hitTileCoord = new Vector2Int(
-                (int)((((hitPoint.y - gridPos.y) / 0.25f) - ((hitPoint.x - gridPos.x) / 0.5f)) / -2),
-                (int)((((hitPoint.y-gridPos.y) / 0.25f) + ((hitPoint.x-gridPos.x) / 0.5f))/-2)
-                );
-            GameObject newTile = isoGridSpawner.GetComponent<iso_grid>().FindTile(hitTileCoord);
-            if(newTile != null) {
-                if(newTile != hoveringTile)
-                {
-                    NewHoveringTile(newTile);
-                }
-                return;
-            }
-        }
-        if (hoveringTile != null)
-        {
-            hoveringTile.transform.position -= new Vector3(0, 0.1f, 0);
-            hoveringTile = null;
-        }
-    }
-
-    private void NewHoveringTile(GameObject newTile)
-    {
-        if(hoveringTile != null)
-        {
-            hoveringTile.transform.position -= new Vector3(0,0.1f,0);
-        }
-        hoveringTile = newTile;
-        hoveringTile.transform.position += new Vector3(0, 0.1f, 0);
+        return flag;*/
+        return false;
     }
 }
