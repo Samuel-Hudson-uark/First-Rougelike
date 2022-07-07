@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Placer : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class Placer : MonoBehaviour
     private bool isPlacing = false;
     private GameObject placingUnit;
     private GameObject placingCard;
-    [SerializeField] private GridLayout gridLayout;
+    [SerializeField] private Tilemap tilemap;
 
     // Update is called once per frame
     void Update()
@@ -43,41 +44,41 @@ public class Placer : MonoBehaviour
     {
         Vector2 posOnScreen = Input.mousePosition;
         Vector2 worldPoint = Camera.main.ScreenToWorldPoint(posOnScreen);
-        Vector3Int tile = gridLayout.WorldToCell(worldPoint) + new Vector3Int(-1,-1,0);
-        Debug.Log(tile);
-        /*if(hoveringTile != null && isPlacing)
+        Vector3Int tilePos = tilemap.WorldToCell(worldPoint) + new Vector3Int(-1,-1,0);
+        TileBase tile = tilemap.GetTile(tilePos);
+        if(isPlacing)
         {
-            if(Place(hoveringTile))
+            if (tile != null)
             {
-                isPlacing = false;
-            } else
-            {
-                //Feedback or something idk
+                if (Place(tile, tilemap.GetCellCenterWorld(tilePos), placingUnit))
+                {
+                    isPlacing = false;
+                    placingUnit = null;
+                }
+                else
+                {
+                    //Feedback or something idk
+                }
             }
+            else
+            {
+                Destroy(placingUnit);
+                isPlacing = false;
+            }
+
         }
-        else if(isPlacing)
-        {
-            Destroy(placingUnit);
-            isPlacing = false;
-        }*/
+        
     }
 
-    public bool Place(GameObject tileObject)
+    public bool Place(TileBase tile, Vector3 worldPoint, GameObject unit)
     {
-        /*Tile tile = hoveringTile.GetComponent<Tile>();
-        bool flag = tile.CanPass(placingUnit);
-        if (flag)
+        //Make tile store the placed unit in tileproperties
+        unit.transform.position = worldPoint + new Vector3(0, 0.75f, 0);
+        unit.GetComponent<Movement>().Init();
+        if (placingCard != null)
         {
-            placingUnit.transform.SetParent(tileObject.transform);
-            placingUnit.transform.localPosition = new Vector3(0, 0.4f, 0);
-            placingUnit.GetComponent<Movement>().Init();
-            placingUnit = null;
-            if (placingCard != null)
-            {
-                Destroy(placingCard);
-            }
+            Destroy(placingCard);
         }
-        return flag;*/
-        return false;
+        return true;
     }
 }
