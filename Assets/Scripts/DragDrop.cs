@@ -22,11 +22,6 @@ public class DragDrop : MonoBehaviour
         PointerExit();
     }
 
-    public void EndDrag()
-    {
-        placer.OnClick();
-    }
-
     public void PointerEnter()
     {
         if (isDragging || isViewing) return;
@@ -34,7 +29,7 @@ public class DragDrop : MonoBehaviour
         cardImage.transform.LeanMoveLocalY(15, 0.25f);
         cardImage.transform.localScale = new Vector3(2, 2, 1);
         cardImage.layer = 7;
-        foreach(Transform child in cardImage.transform)
+        foreach (Transform child in cardImage.transform)
         {
             child.gameObject.layer = 7;
         }

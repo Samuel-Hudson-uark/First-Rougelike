@@ -1,16 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Movement : MonoBehaviour
 {
     public bool turn = false;
+    TileManager tileManager;
 
-    List<Tile> selectableTiles = new List<Tile>();
-    GameObject[] tiles;
+    List<TileProperties> selectableTiles;
 
-    Stack<Tile> path = new Stack<Tile>();
-    Tile currentTile;
+    Stack<TileProperties> path = new Stack<TileProperties>();
+    TileProperties currentTile;
 
     Vector3 velocity = new Vector3();
     Vector3 heading = new Vector3();
@@ -20,51 +21,36 @@ public class Movement : MonoBehaviour
 
     public UnitLogic logic;
 
-    public void Init()
+    private void Start()
     {
-        tiles = GameObject.FindGameObjectsWithTag("Tile");
+        tileManager = GameObject.Find("Tilemap").GetComponent<TileManager>();
+    }
+
+    public void Init(Vector3Int pos)
+    {
+        this.currentTile = tileManager.findTile(pos);
+        selectableTiles = new List<TileProperties>();
         logic = gameObject.GetComponent<UnitLogic>();
 
         TurnManager.AddUnit(this);
     }
 
-    public void GetCurrentTile()
-    {
-        currentTile = getTargetTile(gameObject);
-        currentTile.current = true;
-    }
-
-    public Tile getTargetTile(GameObject target)
-    {
-        return target.transform.parent.gameObject.GetComponent<Tile>();
-    }
-
-    public void ComputeAdjacencyLists()
-    {
-        tiles = GameObject.FindGameObjectsWithTag("Tile");
-
-        foreach (GameObject tile in tiles)
-        {
-            Tile t = tile.GetComponent<Tile>();
-            t.FindNeighbors();
-        }
-    }
+    public TileManager GetTileManager() { return tileManager; }
 
     public void FindSelectableTiles()
     {
-        ComputeAdjacencyLists();
-        GetCurrentTile();
+        tileManager.ResetAll();
 
         if (!logic.CanMove())
             return;
 
-        Queue<Tile> process = new Queue<Tile>();
+        Queue<TileProperties> process = new Queue<TileProperties>();
         process.Enqueue(currentTile);
         currentTile.visited = true;
 
         while(process.Count > 0)
         {
-            Tile t = process.Dequeue();
+            TileProperties t = process.Dequeue();
 
             selectableTiles.Add(t);
             if(t != currentTile)
@@ -72,7 +58,7 @@ public class Movement : MonoBehaviour
 
             if(t.distance < logic.currentMove)
             {
-                foreach (Tile tile in t.adjacencyList)
+                foreach (var tile in t.adjacencyList.Values)
                 {
                     if (!tile.visited)
                     {
@@ -86,14 +72,14 @@ public class Movement : MonoBehaviour
         }
     }
 
-    public void MoveToTile(Tile tile)
+    public void MoveToTile(TileProperties tile)
     {
         path.Clear();
         moving = true;
 
-        transform.SetParent(tile.gameObject.transform);
+        this.currentTile = tile;
 
-        Tile next = tile;
+        TileProperties next = tile;
         while(next != null)
         {
             path.Push(next);
@@ -108,8 +94,8 @@ public class Movement : MonoBehaviour
     {
         if(path.Count > 0)
         {
-            Tile t = path.Peek();
-            Vector3 target = t.transform.position;
+            TileProperties t = path.Peek();
+            Vector3 target = t.tilemap.CellToLocal(t.pos) + new Vector3(0, 0.75f, 0);
             if(Vector3.Distance(transform.position, target) >= 0.05f)
             {
                 CalculateHeading(target);
@@ -137,7 +123,7 @@ public class Movement : MonoBehaviour
             currentTile = null;
         }
 
-        foreach (Tile tile in selectableTiles)
+        foreach (var tile in selectableTiles)
         {
             tile.Reset();
         }

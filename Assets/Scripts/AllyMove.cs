@@ -5,6 +5,12 @@ using UnityEngine;
 public class AllyMove : Movement
 {
     public bool isActive = false;
+    private MouseHandler mouseHandler;
+
+    private void Start()
+    {
+        mouseHandler = GameObject.Find("GameEngine").GetComponent<MouseHandler>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -28,16 +34,11 @@ public class AllyMove : Movement
     {
         if(Input.GetMouseButtonUp(0))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
-            if (hit.collider != null && hit.collider.gameObject.tag == "Tile")
+            TileProperties t = GetTileManager().findTile(mouseHandler.hoveringPos);
+            if(t != null && t.selectable)
             {
-                Tile t = hit.collider.gameObject.GetComponent<Tile>();
-                if(t.selectable)
-                {
-                    MoveToTile(t);
-                    isActive = false;
-                }
+                MoveToTile(t);
+                isActive = false;
             }
         }
     }
