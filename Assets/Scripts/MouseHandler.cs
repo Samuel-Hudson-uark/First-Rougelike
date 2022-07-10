@@ -8,6 +8,7 @@ public class MouseHandler : MonoBehaviour
     private Placer placer;
     private Tilemap tilemap;
     private TileBase hoveringTile;
+    private GameObject activeUnit;
     public Vector3Int hoveringPos;
 
     // Start is called before the first frame update
@@ -15,6 +16,8 @@ public class MouseHandler : MonoBehaviour
     {
         placer = GameObject.Find("Placer").GetComponent<Placer>();
         tilemap = GameObject.Find("Grid").transform.Find("Tilemap").GetComponent<Tilemap>();
+        hoveringTile = null;
+        activeUnit = null;
     }
 
     // Update is called once per frame
@@ -29,7 +32,26 @@ public class MouseHandler : MonoBehaviour
     public void Click()
     {
         Debug.Log(hoveringPos);
-        placer.OnClick(hoveringPos, hoveringTile);
+        bool flag = placer.TryToPlace(hoveringPos, hoveringTile);
+        if(!flag)
+        {
+            if(activeUnit == null)
+            {
+                GameObject unit = TileManager.GetTileAt(hoveringPos).unit;
+                if (unit == null)
+                    return;
+                AllyMove allyMove;
+                if (unit.CompareTag("Ally") && unit.TryGetComponent<AllyMove>(out allyMove) && !allyMove.moving && allyMove.logic.CanMove())
+                {
+                    activeUnit = unit;
+                    activeUnit.GetComponent<AllyMove>().OnClick();
+                }
+            } else
+            {
+                activeUnit.GetComponent<AllyMove>().OnClick();
+                activeUnit = null;
+            }
+        } 
     }
 
     bool UpdateHoveringTile(Vector2 worldPoint)

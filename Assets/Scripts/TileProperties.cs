@@ -9,19 +9,37 @@ public class TileProperties
     public GameObject unit;
     public Tilemap tilemap;
     public Vector3Int pos;
-    /*
-     * {
-        get { return current; }
-        set 
-        { 
-            current = value; 
+
+    private bool current;
+    public bool Current
+    {
+        get => current;
+        set
+        {
+            current = value;
             UpdateColor();
         }
     }
-     */
-    public bool current;
-    public bool selectable;
-    public bool attackable;
+    private bool selectable;
+    public bool Selectable
+    {
+        get => selectable;
+        set
+        {
+            selectable = value;
+            UpdateColor();
+        }
+    }
+    private bool attackable;
+    public bool Attackable
+    {
+        get => attackable;
+        set
+        {
+            attackable = value;
+            UpdateColor();
+        }
+    }
 
     public Dictionary<Vector3Int, TileProperties> adjacencyList;
 
@@ -29,11 +47,13 @@ public class TileProperties
     public TileProperties parent;
     public int distance;
 
-    public TileProperties(Tilemap tilemap)
+    public TileProperties(Tilemap tilemap, Vector3Int pos)
     {
         Reset();
+        ResetAdjacencyList();
         unit = null;
         this.tilemap = tilemap;
+        this.pos = pos;
     }
 
     void UpdateColor()
@@ -41,7 +61,7 @@ public class TileProperties
         Color color = Color.white;
         if (current)
         {
-            color = Color.magenta;
+            color = Color.gray;
         }
         else if (attackable)
         {
@@ -51,10 +71,14 @@ public class TileProperties
         {
             color = Color.green;
         }
-        tilemap.SetColor(pos, color);
+        if(tilemap != null)
+        {
+            tilemap.SetTileFlags(pos, TileFlags.None);
+            tilemap.SetColor(pos, color);
+        }
     }
 
-    public void Reset()
+    public void ResetAdjacencyList()
     {
         adjacencyList = new Dictionary<Vector3Int, TileProperties>
         {
@@ -65,10 +89,15 @@ public class TileProperties
             { Vector3Int.forward, null },
             { Vector3Int.back, null }
         };
+    }
+
+    public void Reset()
+    {
 
         current = false;
         attackable = false;
         selectable = false;
+        UpdateColor();
 
         visited = false;
         parent = null;
@@ -92,11 +121,17 @@ public class TileProperties
     public bool CanPlaceUnit(GameObject unit)
     {
         //Tile logic for valid unit placement (land, sea, mountain, etc.) here.
-        return unit == null;
+        return this.unit == null;
     }
 
     public bool HasUnit(GameObject unit)
     {
         return this.unit == unit;
+    }
+
+    public Vector3 WorldPosForPlacement()
+    {
+        //adjust here for half-size blocks
+        return tilemap.CellToWorld(pos) + new Vector3(0, 1f, 0);
     }
 }

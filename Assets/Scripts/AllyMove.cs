@@ -15,38 +15,29 @@ public class AllyMove : Movement
     // Update is called once per frame
     void Update()
     {
+        /*
         if (!turn)
             return;
-
         if(isActive)
         {
             if(!moving)
             {
                 FindSelectableTiles();
-                CheckMouse();
             }
         }
+        */
         if (moving)
             Move();
     }
 
-    void CheckMouse()
-    {
-        if(Input.GetMouseButtonUp(0))
-        {
-            TileProperties t = GetTileManager().findTile(mouseHandler.hoveringPos);
-            if(t != null && t.selectable)
-            {
-                MoveToTile(t);
-                isActive = false;
-            }
-        }
-    }
-
     public void OnClick()
     {
+        if (moving)
+            return;
         if (isActive)
         {
+            TileProperties t = TileManager.GetTileAt(mouseHandler.hoveringPos);
+            TryMoveToTile(t);
             isActive = false;
             RemoveSelectableTiles();
         } else
@@ -55,7 +46,9 @@ public class AllyMove : Movement
             {
                 ally.GetComponent<AllyMove>().isActive = false;
             }
-            isActive = true;
+            if(logic.CanMove())
+                isActive = true;
+            FindSelectableTiles();
         }
     }
 }

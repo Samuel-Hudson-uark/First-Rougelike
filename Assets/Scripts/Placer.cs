@@ -10,7 +10,6 @@ public class Placer : MonoBehaviour
     private GameObject placingUnit;
     private GameObject placingCard;
     [SerializeField] private Tilemap tilemap;
-    [SerializeField] private TileManager tileManager;
 
     // Update is called once per frame
     void Update()
@@ -30,7 +29,7 @@ public class Placer : MonoBehaviour
         isPlacing = true;
     }
 
-    public void OnClick(Vector3Int pos, TileBase tile)
+    public bool TryToPlace(Vector3Int pos, TileBase tile)
     {
         if(isPlacing)
         {
@@ -47,7 +46,9 @@ public class Placer : MonoBehaviour
                     //Feedback or something idk
                 }
             }
+            return true;
         }
+        return false;
     }
 
     public void CancelPlace()
@@ -59,7 +60,7 @@ public class Placer : MonoBehaviour
     public bool Place(Vector3Int worldPoint, GameObject unit)
     {
         //Make tile store the placed unit in tileproperties
-        if(tileManager.PlaceUnit(worldPoint, unit))
+        if(TileManager.PlaceUnit(worldPoint, unit))
         {
             unit.transform.position = tilemap.GetCellCenterWorld(worldPoint) + new Vector3(0, 0.75f, 0);
             unit.GetComponent<Movement>().Init(worldPoint);

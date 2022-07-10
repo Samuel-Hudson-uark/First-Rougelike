@@ -6,61 +6,54 @@ using UnityEngine.Tilemaps;
 public class Movement : MonoBehaviour
 {
     public bool turn = false;
-    TileManager tileManager;
 
     List<TileProperties> selectableTiles;
 
-    Stack<TileProperties> path = new Stack<TileProperties>();
+    Stack<TileProperties> path = new();
     TileProperties currentTile;
 
-    Vector3 velocity = new Vector3();
-    Vector3 heading = new Vector3();
+    Vector3 velocity = new();
+    Vector3 heading = new();
     
     public bool moving = false;
     public float moveSpeed = 4;
 
     public UnitLogic logic;
 
-    private void Start()
-    {
-        tileManager = GameObject.Find("Tilemap").GetComponent<TileManager>();
-    }
-
     public void Init(Vector3Int pos)
     {
-        this.currentTile = tileManager.findTile(pos);
-        selectableTiles = new List<TileProperties>();
+        currentTile = TileManager.GetTileAt(pos);
+        selectableTiles = new();
         logic = gameObject.GetComponent<UnitLogic>();
 
         TurnManager.AddUnit(this);
     }
 
-    public TileManager GetTileManager() { return tileManager; }
-
     public void FindSelectableTiles()
     {
-        tileManager.ResetAll();
+        TileManager.ResetAll();
 
         if (!logic.CanMove())
             return;
 
-        Queue<TileProperties> process = new Queue<TileProperties>();
+        Queue<TileProperties> process = new();
         process.Enqueue(currentTile);
         currentTile.visited = true;
+        currentTile.Current = true;
 
         while(process.Count > 0)
         {
             TileProperties t = process.Dequeue();
 
             selectableTiles.Add(t);
-            if(t != currentTile)
-                t.selectable = true;
+            if(t != currentTile && t.CanPlaceUnit(gameObject))
+                t.Selectable = true;
 
             if(t.distance < logic.currentMove)
             {
                 foreach (var tile in t.adjacencyList.Values)
                 {
-                    if (!tile.visited)
+                    if (tile != null && !tile.visited)
                     {
                         tile.parent = t;
                         tile.visited = true;
@@ -72,22 +65,28 @@ public class Movement : MonoBehaviour
         }
     }
 
-    public void MoveToTile(TileProperties tile)
+    public void TryMoveToTile(TileProperties tile)
     {
-        path.Clear();
-        moving = true;
-
-        this.currentTile = tile;
-
-        TileProperties next = tile;
-        while(next != null)
+        if (tile != null && tile.Selectable && tile.CanPlaceUnit(gameObject))
         {
-            path.Push(next);
-            next = next.parent;
-        }
+            path.Clear();
+            moving = true;
+            currentTile.unit = null;
+            currentTile.Current = false;
+            this.currentTile = tile;
+            currentTile.unit = gameObject;
 
-        logic.currentMove -= path.Count;
-        RemoveSelectableTiles();
+            TileProperties next = tile;
+            while (next != null)
+            {
+                path.Push(next);
+                next = next.parent;
+            }
+
+            logic.currentMove -= path.Count;
+            RemoveSelectableTiles();
+        }
+        
     }
 
     public void Move()
@@ -95,7 +94,7 @@ public class Movement : MonoBehaviour
         if(path.Count > 0)
         {
             TileProperties t = path.Peek();
-            Vector3 target = t.tilemap.CellToLocal(t.pos) + new Vector3(0, 0.75f, 0);
+            Vector3 target = t.WorldPosForPlacement();
             if(Vector3.Distance(transform.position, target) >= 0.05f)
             {
                 CalculateHeading(target);
@@ -117,11 +116,6 @@ public class Movement : MonoBehaviour
     
     protected void RemoveSelectableTiles()
     {
-        if(currentTile != null)
-        {
-            currentTile.current = false;
-            currentTile = null;
-        }
 
         foreach (var tile in selectableTiles)
         {
