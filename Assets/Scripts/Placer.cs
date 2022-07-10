@@ -2,30 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.U2D.Animation;
 
 public class Placer : MonoBehaviour
 {
     private static Vector2 size = new Vector2(32, 32);
     private bool isPlacing = false;
-    private GameObject placingUnit;
     private GameObject placingCard;
     [SerializeField] private Tilemap tilemap;
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-    }
-
-    public void UpdatePosition(Vector2 target)
-    {
-        if(!isPlacing) { return; }
-        placingUnit.transform.position = new Vector3(target.x, target.y+0.25f, transform.position.z);
+        transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0,0,10);
     }
 
     public void AssignUnit(GameObject card)
     {
-        placingUnit = Instantiate(card.GetComponent<CardDisplay>().card.unit, new Vector3(0, 0, 0), Quaternion.identity);
         placingCard = card;
+        GetComponent<SpriteLibrary>().spriteLibraryAsset = placingCard.GetComponent<CardDisplay>().card.unit.GetComponent<SpriteLibrary>().spriteLibraryAsset;
         isPlacing = true;
     }
 
@@ -35,10 +29,10 @@ public class Placer : MonoBehaviour
         {
             if (tile != null)
             {
-                if (Place(pos, placingUnit))
+
+                if (Place(pos, placingCard.GetComponent<CardDisplay>().card.unit))
                 {
                     isPlacing = false;
-                    placingUnit = null;
                 }
                 else
                 {
@@ -53,23 +47,28 @@ public class Placer : MonoBehaviour
 
     public void CancelPlace()
     {
-        Destroy(placingUnit);
+        placingCard = null;
+        GetComponent<SpriteLibrary>().spriteLibraryAsset = null;
+        GetComponent<SpriteRenderer>().sprite = null;
         isPlacing = false;
     }
 
     public bool Place(Vector3Int worldPoint, GameObject unit)
     {
         //Make tile store the placed unit in tileproperties
-        if(TileManager.PlaceUnit(worldPoint, unit))
+        if(TileManager.CanPlaceUnit(worldPoint, unit))
         {
-            unit.transform.position = tilemap.GetCellCenterWorld(worldPoint) + new Vector3(0, 0.75f, 0);
+            unit = Instantiate(unit, tilemap.GetCellCenterWorld(worldPoint) + new Vector3(0, 0.75f, 0), Quaternion.identity);
+            TileManager.PlaceUnit(worldPoint, unit);
             unit.GetComponent<Movement>().Init(worldPoint);
             if (placingCard != null)
             {
                 Destroy(placingCard);
             }
+            CancelPlace();
             return true;
         }
+        Destroy(unit);
         return false;
     }
 }

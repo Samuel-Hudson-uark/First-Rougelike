@@ -12,18 +12,12 @@ public class UnitLogic : MonoBehaviour
 
     public int totalDamage = 0;
 
-    void Start()
-    {
-        Init();
-    }
+    public bool attacking = false;
 
     public void Init()
     {
         card = Instantiate(originalCard);
         maxAttacks = 1;
-        RefreshMove();
-        RefreshAttack();
-
     }
 
     void Update()
@@ -65,6 +59,6 @@ public class UnitLogic : MonoBehaviour
     }
     public void Die()
     {
-        Destroy(gameObject);
+        GetComponent<Animator>().SetTrigger("die");
     }
 }

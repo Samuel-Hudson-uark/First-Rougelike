@@ -24,7 +24,6 @@ public class MouseHandler : MonoBehaviour
     void Update()
     {
         Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        placer.UpdatePosition(worldPoint);
         UpdateHoveringTile(worldPoint);
         if (Input.GetMouseButtonDown(0) && !Input.GetMouseButton(1) && hoveringTile == null)
             placer.CancelPlace();

@@ -5,6 +5,8 @@ using UnityEngine.Tilemaps;
 
 public class Movement : MonoBehaviour
 {
+    private Animator animator;
+
     public bool turn = false;
 
     List<TileProperties> selectableTiles;
@@ -20,11 +22,23 @@ public class Movement : MonoBehaviour
 
     public UnitLogic logic;
 
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
+
+    private void Update()
+    {
+        animator.SetBool("moving", moving);
+        animator.SetBool("attacking", logic.attacking);
+    }
+
     public void Init(Vector3Int pos)
     {
         currentTile = TileManager.GetTileAt(pos);
         selectableTiles = new();
         logic = gameObject.GetComponent<UnitLogic>();
+        logic.Init();
 
         TurnManager.AddUnit(this);
     }

@@ -1,0 +1,152 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e6fedc2472449cead18ef23b5cb30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library:
+  - m_Name: Idle
+    m_Hash: 2081823275
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: NecromancerSpriteSheet_24
+      m_Hash: 1723451200
+      m_Sprite: {fileID: 4413107966598997950, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 4413107966598997950, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
+    - m_Name: NecromancerSpriteSheet_25
+      m_Hash: 297727958
+      m_Sprite: {fileID: -7857605985403159077, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -7857605985403159077, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
+    - m_Name: NecromancerSpriteSheet_26
+      m_Hash: -2001230228
+      m_Sprite: {fileID: -9127575543430084172, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -9127575543430084172, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
+    - m_Name: NecromancerSpriteSheet_27
+      m_Hash: -21981446
+      m_Sprite: {fileID: 5070479373852747331, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 5070479373852747331, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 4
+  - m_Name: Move
+    m_Hash: 1326225478
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: NecromancerSpriteSheet_28
+      m_Hash: 1863289707
+      m_Sprite: {fileID: 2685867010393073059, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 2685867010393073059, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
+    - m_Name: NecromancerSpriteSheet_29
+      m_Hash: 403225597
+      m_Sprite: {fileID: 884060338602403090, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 884060338602403090, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
+    - m_Name: NecromancerSpriteSheet_30
+      m_Hash: 2026844696
+      m_Sprite: {fileID: 6438722850066051718, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 6438722850066051718, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
+    - m_Name: NecromancerSpriteSheet_31
+      m_Hash: 264766094
+      m_Sprite: {fileID: 3549541870051404046, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 3549541870051404046, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 4
+  - m_Name: Attack
+    m_Hash: 1080829965
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: NecromancerSpriteSheet_32
+      m_Hash: -1765715148
+      m_Sprite: {fileID: -2734150270006885487, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -2734150270006885487, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
+    - m_Name: NecromancerSpriteSheet_33
+      m_Hash: -507092062
+      m_Sprite: {fileID: 5399994829243021085, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 5399994829243021085, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
+    - m_Name: NecromancerSpriteSheet_34
+      m_Hash: 2141386241
+      m_Sprite: {fileID: -1227911274305926621, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1227911274305926621, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
+    - m_Name: NecromancerSpriteSheet_35
+      m_Hash: 145082007
+      m_Sprite: {fileID: -5503247721503169265, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -5503247721503169265, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 4
+  - m_Name: Hit
+    m_Hash: 1654612129
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: NecromancerSpriteSheet_36
+      m_Hash: -1850960083
+      m_Sprite: {fileID: 6378303919998811804, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 6378303919998811804, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
+    - m_Name: NecromancerSpriteSheet_37
+      m_Hash: -424958021
+      m_Sprite: {fileID: 6012538882538902231, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 6012538882538902231, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
+    - m_Name: NecromancerSpriteSheet_38
+      m_Hash: 1981069866
+      m_Sprite: {fileID: -4841025078476288917, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -4841025078476288917, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
+    - m_Name: NecromancerSpriteSheet_39
+      m_Hash: 18057916
+      m_Sprite: {fileID: 3410158326655671099, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 3410158326655671099, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 4
+  - m_Name: Die
+    m_Hash: 20298039
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: NecromancerSpriteSheet_40
+      m_Hash: 932095199
+      m_Sprite: {fileID: 5557797223299235261, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 5557797223299235261, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
+    - m_Name: NecromancerSpriteSheet_41
+      m_Hash: 1082758217
+      m_Sprite: {fileID: 9070821947899560930, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 9070821947899560930, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
+    - m_Name: NecromancerSpriteSheet_42
+      m_Hash: -645872141
+      m_Sprite: {fileID: 779817276148808016, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 779817276148808016, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
+    - m_Name: NecromancerSpriteSheet_43
+      m_Hash: -1366821531
+      m_Sprite: {fileID: 8030913747645535063, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 8030913747645535063, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 4
+  - m_Name: Special
+    m_Hash: -2083125633
+    m_CategoryList: []
+    m_OverrideEntries: []
+    m_FromMain: 0
+    m_EntryOverrideCount: 0
+  m_PrimaryLibraryGUID: 

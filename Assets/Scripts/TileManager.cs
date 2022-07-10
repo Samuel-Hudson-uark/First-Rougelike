@@ -88,6 +88,11 @@ public class TileManager : MonoBehaviour
         }
     }
 
+    public static bool CanPlaceUnit(Vector3Int tilePos, GameObject newUnit)
+    {
+        return tilePropertiesDict[tilePos].CanPlaceUnit(newUnit);
+    }
+
     public static bool PlaceUnit(Vector3Int tilePos, GameObject newUnit)
     {
         if(tilePropertiesDict.ContainsKey(tilePos))

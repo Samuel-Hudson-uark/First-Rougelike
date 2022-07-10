@@ -14,10 +14,8 @@ GameObject:
   - component: {fileID: 4031432246002615151}
   - component: {fileID: 1364325327758813495}
   - component: {fileID: -3611697702110329851}
-  - component: {fileID: 3833439669048114395}
-  - component: {fileID: 4198377851681131927}
   m_Layer: 3
-  m_Name: SkeletonUnit
+  m_Name: ZombieUnit
   m_TagString: Ally
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 4413107966598997950, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
+  m_Sprite: {fileID: -7799038553740627099, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,7 +98,7 @@ Animator:
   m_GameObject: {fileID: 8369066323461281969}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 14728625458b26d48a4d393edd8aa004, type: 2}
+  m_Controller: {fileID: 9100000, guid: bcca40008703bda468b3cd122248797c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -145,7 +143,6 @@ MonoBehaviour:
   currentAttacks: 0
   maxAttacks: 0
   totalDamage: 0
-  attacking: 0
 --- !u!114 &-3611697702110329851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,33 +169,4 @@ MonoBehaviour:
   - {x: 0.25, y: -0.25, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 34244
---- !u!114 &3833439669048114395
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8369066323461281969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c29cff538c195c249b69c6f2236de67b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Library: []
-  m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 0543040bea823624ba3a1faf80d7db5a, type: 3}
---- !u!114 &4198377851681131927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8369066323461281969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_CategoryHash: 0
-  m_labelHash: 0
-  m_SpriteKey: 1.11112946e+11
+  m_InstanceId: 33724
