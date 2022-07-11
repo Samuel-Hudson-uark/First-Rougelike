@@ -8,6 +8,7 @@ public class Deck : MonoBehaviour
     private Stack<MonsterCard> cards;
     public MonsterCard tempCard;
     public MonsterCard tempCard2;
+    public MonsterCard tempCard3;
     public GameObject cardObject;
     public GameObject handObject;
 
@@ -21,6 +22,7 @@ public class Deck : MonoBehaviour
         cards.Push(Instantiate(tempCard));
         cards.Push(Instantiate(tempCard));
         cards.Push(Instantiate(tempCard2));
+        cards.Push(Instantiate(tempCard3));
         cards = Shuffle(cards);
     }
 

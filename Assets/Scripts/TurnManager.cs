@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class TurnManager : MonoBehaviour
 {
-    static Dictionary<string, List<Movement>> units = new Dictionary<string, List<Movement>>();
-    static Queue<string> turnKey = new Queue<string>();
-    static List<Movement> teamList = new List<Movement>();
+    public static ManaManager allyMana;
+
+    static Dictionary<string, List<Movement>> units = new();
+    static Queue<string> turnKey = new();
+    static List<Movement> teamList = new();
+
+    private void Start()
+    {
+        allyMana = GetComponent<ManaManager>();
+    }
 
     void Update()
     {
@@ -29,6 +36,8 @@ public class TurnManager : MonoBehaviour
         {
             move.BeginTurn();
         }
+        if (turnKey.Peek() == "Ally")
+            allyMana.RegainMana();
     }
 
     public static void EndTurn()

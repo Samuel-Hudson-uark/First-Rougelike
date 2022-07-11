@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4f0b65fe03dfe546bb292582ef13e3b, type: 3}
   m_Name: Zombie
   m_EditorClassIdentifier: 
-  name: Skeleton
+  name: Zombie
   text: He's hungry.
   artwork: {fileID: -7799038553740627099, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
   cost: 0
-  move: 3
+  move: 2
   attack: 1
   health: 1
   unit: {fileID: 8369066323461281969, guid: 8e5754f082823914b9d0c5ce4e214f4b, type: 3}

@@ -5,20 +5,23 @@ using UnityEngine;
 public class UnitLogic : MonoBehaviour
 {
     public MonsterCard originalCard;
-    public MonsterCard card;
+    private MonsterCard card;
+    public MonsterCard Card 
+    { 
+        get 
+        { 
+            if(card == null)
+                card = Instantiate(originalCard);
+            return card;
+        } 
+    }
     public int currentMove;
     public int currentAttacks;
-    public int maxAttacks;
+    public int maxAttacks = 1;
 
     public int totalDamage = 0;
 
     public bool attacking = false;
-
-    public void Init()
-    {
-        card = Instantiate(originalCard);
-        maxAttacks = 1;
-    }
 
     void Update()
     {
@@ -34,12 +37,12 @@ public class UnitLogic : MonoBehaviour
     }
     public void RefreshMove()
     {
-        currentMove = card.move;
+        currentMove = Card.move;
     }
 
     public bool CanMove()
     {
-        return currentMove == card.move;
+        return currentMove == Card.move;
     }
 
     public bool CanAttack()

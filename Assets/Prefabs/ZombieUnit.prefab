@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 4031432246002615151}
   - component: {fileID: 1364325327758813495}
   - component: {fileID: -3611697702110329851}
+  - component: {fileID: -2039402203196182993}
+  - component: {fileID: 5441504225653905230}
   m_Layer: 3
   m_Name: ZombieUnit
   m_TagString: Ally
@@ -98,7 +100,7 @@ Animator:
   m_GameObject: {fileID: 8369066323461281969}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: bcca40008703bda468b3cd122248797c, type: 2}
+  m_Controller: {fileID: 9100000, guid: 14728625458b26d48a4d393edd8aa004, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -123,7 +125,7 @@ MonoBehaviour:
   turn: 0
   moving: 0
   moveSpeed: 2
-  logic: {fileID: 0}
+  logic: {fileID: 1364325327758813495}
   isActive: 0
 --- !u!114 &1364325327758813495
 MonoBehaviour:
@@ -137,12 +139,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfac78365549e4246b86411076e2ad2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalCard: {fileID: 11400000, guid: d611f446dca0dcb44ac2fe74ab5bd125, type: 2}
+  originalCard: {fileID: 11400000, guid: a9ed8642fd0bb9b40a32293f9de2d964, type: 2}
   card: {fileID: 0}
   currentMove: 0
   currentAttacks: 0
   maxAttacks: 0
   totalDamage: 0
+  attacking: 0
 --- !u!114 &-3611697702110329851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,3 +173,32 @@ MonoBehaviour:
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
   m_InstanceId: 33724
+--- !u!114 &-2039402203196182993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8369066323461281969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c29cff538c195c249b69c6f2236de67b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library: []
+  m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 84af015962a918d4bb66dff4d6191c27, type: 3}
+--- !u!114 &5441504225653905230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8369066323461281969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CategoryHash: 0
+  m_labelHash: 0
+  m_SpriteKey: 0

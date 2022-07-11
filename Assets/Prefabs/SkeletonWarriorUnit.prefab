@@ -125,7 +125,7 @@ MonoBehaviour:
   turn: 0
   moving: 0
   moveSpeed: 2
-  logic: {fileID: 0}
+  logic: {fileID: -4989834008132170516}
   isActive: 0
 --- !u!114 &-4989834008132170516
 MonoBehaviour:

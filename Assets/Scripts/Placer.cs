@@ -19,7 +19,8 @@ public class Placer : MonoBehaviour
     public void AssignUnit(GameObject card)
     {
         placingCard = card;
-        GetComponent<SpriteLibrary>().spriteLibraryAsset = placingCard.GetComponent<CardDisplay>().card.unit.GetComponent<SpriteLibrary>().spriteLibraryAsset;
+        SpriteLibraryAsset unitSpriteLibrary = placingCard.GetComponent<CardDisplay>().card.unit.GetComponent<SpriteLibrary>().spriteLibraryAsset;
+        GetComponent<SpriteLibrary>().spriteLibraryAsset = unitSpriteLibrary;
         isPlacing = true;
     }
 
@@ -31,16 +32,13 @@ public class Placer : MonoBehaviour
             {
 
                 if (Place(pos, placingCard.GetComponent<CardDisplay>().card.unit))
-                {
-                    isPlacing = false;
-                }
+                    return true;
                 else
                 {
                     Debug.Log("Unable to place unit.");
                     //Feedback or something idk
                 }
             }
-            return true;
         }
         return false;
     }
@@ -55,9 +53,11 @@ public class Placer : MonoBehaviour
 
     public bool Place(Vector3Int worldPoint, GameObject unit)
     {
-        //Make tile store the placed unit in tileproperties
-        if(TileManager.CanPlaceUnit(worldPoint, unit))
+        //Make sure you can afford unit
+        int price = unit.GetComponent<UnitLogic>().Card.cost;
+        if(TurnManager.allyMana.CanAfford(price) && TileManager.CanPlaceUnit(worldPoint, unit))
         {
+            TurnManager.allyMana.SpendMana(price);
             unit = Instantiate(unit, tilemap.GetCellCenterWorld(worldPoint) + new Vector3(0, 0.75f, 0), Quaternion.identity);
             TileManager.PlaceUnit(worldPoint, unit);
             unit.GetComponent<Movement>().Init(worldPoint);

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SkeletonWarrior
   m_EditorClassIdentifier: 
   name: Skeleton Warrior
-  text: More powerful
+  text: More powerful.
   artwork: {fileID: -5987757079455804182, guid: 8dd83f4ad747b44448bab344919b24c1, type: 3}
   cost: 3
   move: 5

@@ -37,8 +37,6 @@ public class Movement : MonoBehaviour
     {
         currentTile = TileManager.GetTileAt(pos);
         selectableTiles = new();
-        logic = gameObject.GetComponent<UnitLogic>();
-        logic.Init();
 
         TurnManager.AddUnit(this);
     }
