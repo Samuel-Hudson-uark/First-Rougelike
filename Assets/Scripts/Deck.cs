@@ -1,11 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
-public class Deck : MonoBehaviour
+public class Deck : CardHolder
 {
-    private Stack<MonsterCard> cards;
     public MonsterCard tempCard;
     public MonsterCard tempCard2;
     public MonsterCard tempCard3;
@@ -28,16 +26,11 @@ public class Deck : MonoBehaviour
 
     public void OnClick()
     {
-        if(cards.Count > 0)
+        if (cards.Count > 0)
         {
-            GameObject playerCard = Instantiate(cardObject, new Vector3(0,0,0), Quaternion.identity);
+            GameObject playerCard = Instantiate(cardObject, new Vector3(0, 0, 0), Quaternion.identity);
             playerCard.GetComponent<CardDisplay>().originalCard = cards.Pop();
             playerCard.transform.SetParent(handObject.transform, false);
         }
-    }
-
-    private Stack<T> Shuffle<T>(Stack<T> stack)
-    {
-        return new Stack<T>(stack.OrderBy(x => Random.Range(0, stack.Count-1)));
     }
 }
